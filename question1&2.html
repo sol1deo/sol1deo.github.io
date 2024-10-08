@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Marks Calculator</title>
+</head>
+
+</head>
+<body>
+    <h1>Project Marks Calculator</h1>
+    
+    <label for="analysis">Analysis Marks (out of 25): </label>
+    <input type="number" id="analysis" min="0" max="25"><br><br>
+
+    <label for="design">Design Marks (out of 25): </label>
+    <input type="number" id="design" min="0" max="25"><br><br>
+
+    <label for="implementation">Implementation Marks (out of 25): </label>
+    <input type="number" id="implementation" min="0" max="25"><br><br>
+
+    <label for="evaluation">Evaluation Marks (out of 25): </label>
+    <input type="number" id="evaluation" min="0" max="25"><br><br>
+
+    <button onclick="calculateResults()">Calculate</button>
+
+    <label for="numbers">Number of numbers avereged: </label>
+    <input type="number" id="numbers" min="1" max="100"><br><br>
+
+    <label for="numbers">Number of numbers avereged: </label>
+    <input type="number" id="numbers" min="1" max="100"><br><br>
+    
+    <button onclick="calculateResults()">Calculate</button>
+
+    <p id="output"></p>
+    </form>
+
+<script>
+document.write("oooooooooo<br />")
+document.write("o&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspo<br />")
+document.write("o&nbsp&nbsp&nbsp#&nbsp&nbsp&nbsp&nbsp&nbsp#&nbsp&nbsp&nbsp&nbspo<br />")
+document.write("o&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp#&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspo<br />")
+document.write("o&nbsp&nbsp&nbsp#&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp#&nbsp&nbsp&nbspo<br />")
+document.write("o&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspo<br />")
+document.write("oooooooooo<br />")
+function calculateResults() {
+            // Get the input marks
+            let analysis = parseInt(document.getElementById('analysis').value) || 0;
+            let design = parseInt(document.getElementById('design').value) || 0;
+            let implementation = parseInt(document.getElementById('implementation').value) || 0;
+            let evaluation = parseInt(document.getElementById('evaluation').value) || 0;
+
+            // Calculate total marks
+            let total = analysis + design + implementation + evaluation;
+
+            // Determine grade and next mark band
+            let grade, nextMarkBand, marksToNextBand;
+            
+            if (total >= 80) {
+                grade = "A*";
+                nextMarkBand = "N/A"; // No next band
+                marksToNextBand = 0;
+            } else if (total >= 67) {
+                grade = "A";
+                nextMarkBand = 80;
+                marksToNextBand = nextMarkBand - total;
+            } else if (total >= 54) {
+                grade = "B";
+                nextMarkBand = 67;
+                marksToNextBand = nextMarkBand - total;
+            } else if (total >= 41) {
+                grade = "C";
+                nextMarkBand = 54;
+                marksToNextBand = nextMarkBand - total;
+            } else if (total >= 31) {
+                grade = "D";
+                nextMarkBand = 41;
+                marksToNextBand = nextMarkBand - total;
+            } else if (total >= 22) {
+                grade = "E";
+                nextMarkBand = 31;
+                marksToNextBand = nextMarkBand - total;
+            } else if (total >= 13) {
+                grade = "F";
+                nextMarkBand = 22;
+                marksToNextBand = nextMarkBand - total;
+            } else if (total >= 4) {
+                grade = "G";
+                nextMarkBand = 13;
+                marksToNextBand = nextMarkBand - total;
+            } else {
+                grade = "U";
+                nextMarkBand = 4;
+                marksToNextBand = nextMarkBand - total;
+            }
+
+            // Output the results
+            document.getElementById('output').innerHTML = `Total Marks: ${total} <br> Grade: ${grade} <br> Marks to next band: ${marksToNextBand}`;
+        }
+</script>
+</body>
+</html>

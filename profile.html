@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="nav-left">
+                    <ul>
+                        <li><a href="WebsiteRecreation.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                    </ul>
+                </div>
+                <div class="nav-center">
+                    <h1>BudgetsAreSexy</h1>
+                </div>
+                <div class="nav-right">
+                    <ul>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="profile.html" id="user-name-display">Login</a></li>
+                        <li><button id="logout-button">Logout</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Settings Button -->
+    <button id="settings-button">Settings</button>
+
+    <!-- Settings Modal (Hidden by default) -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Account Settings</h2>
+            <form id="settings-form">
+                <label for="new-username">Change Username</label>
+                <input type="text" id="new-username" placeholder="Enter new username">
+                
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password" placeholder="Enter current password" required>
+                
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" placeholder="Enter new password">
+    
+                <label for="confirm-password">Confirm New Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm new password">
+    
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    
+    <header>
+        <h1>Profile</h1>
+    </header>
+    
+    <div class="profile-container">
+        <h2>Add a New Article</h2>
+        <form id="article-form">
+            <input type="text" id="article-title" placeholder="Article Title" required>
+            <input type="text" id="article-description" placeholder="Article Description" required>
+            <input type="text" id="article-image" placeholder="Image URL" required>
+            <button type="submit">Add Article</button>
+        </form>
+        <h3>Your Articles</h3>
+        <div id="your-articles"></div>
+    </div>
+    <script src="navbar.js"></script>
+    <script>
+
+
+        // Function to load articles
+        function loadArticles() {
+            const articles = JSON.parse(localStorage.getItem('articles')) || [];
+            const articlesContainer = document.getElementById('your-articles');
+            articlesContainer.innerHTML = ''; // Clear existing content
+
+            articles.forEach((article, index) => {
+                articlesContainer.innerHTML += `
+                    <article>
+                        <img src="${article.image}" alt="${article.title}">
+                        <h4>${article.title}</h4>
+                        <p>${article.description}</p>
+                        <button onclick="deleteArticle(${index})">Delete</button>
+                    </article>
+                `;
+            });
+        }
+
+        // Function to delete an article
+        function deleteArticle(index) {
+            const articles = JSON.parse(localStorage.getItem('articles')) || [];
+            articles.splice(index, 1); // Remove the article
+            localStorage.setItem('articles', JSON.stringify(articles)); // Update storage
+            loadArticles(); // Reload articles to reflect changes
+        }
+
+        // Function to add a new article
+// Function to add a new article
+document.getElementById('article-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const title = document.getElementById('article-title').value;
+    const description = document.getElementById('article-description').value;
+    const image = document.getElementById('article-image').value;
+    const username = localStorage.getItem('username'); // Get logged-in username
+
+    const articles = JSON.parse(localStorage.getItem('articles')) || [];
+    articles.push({ title, description, image, username }); // Store username with article
+    localStorage.setItem('articles', JSON.stringify(articles));
+
+    loadArticles();
+    this.reset(); // Reset the form
+});
+
+
+        // Load articles when the page is loaded
+        loadArticles();
+// Handle the modal visibility
+const modal = document.getElementById('settings-modal');
+const settingsButton = document.getElementById('settings-button');
+const closeModal = document.getElementsByClassName('close')[0];
+
+settingsButton.onclick = function() {
+    modal.style.display = 'block';
+};
+
+closeModal.onclick = function() {
+    modal.style.display = 'none';
+};
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+};
+
+// Handle the form submission to change username and password
+document.getElementById('settings-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const newUsername = document.getElementById('new-username').value;
+    const currentPassword = document.getElementById('current-password').value;
+    const newPassword = document.getElementById('new-password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    // Retrieve stored password
+    const storedPassword = localStorage.getItem('password');
+
+    // Check if the current password is correct
+    if (currentPassword === storedPassword) {
+        // Validate new password confirmation
+        if (newPassword && newPassword === confirmPassword) {
+            localStorage.setItem('password', newPassword); // Update the password
+            alert('Password changed successfully!');
+        } else if (newPassword !== confirmPassword) {
+            alert('Passwords do not match!');
+        }
+
+        // Update username if provided
+        if (newUsername) {
+            localStorage.setItem('username', newUsername); // Update the username
+            document.getElementById('user-name-display').textContent = newUsername; // Update the display
+            alert('Username changed successfully!');
+        }
+
+        modal.style.display = 'none'; // Close the modal after changes
+    } else {
+        alert('Current password is incorrect!'); // Incorrect password message
+    }
+});
+
+    </script>
+</body>
+</html>

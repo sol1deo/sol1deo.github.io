@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Budgets Are Sexy - Budget Dashboard">
+    <title>Budget Dashboard - Budgets Are Sexy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css"> <!-- Separate CSS for dashboard-specific styles -->
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <nav class="nav-left">
+                    <ul>
+                        <li><a href="WebsiteRecreation.html">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </nav>
+                <h1>Budget Dashboard</h1>
+                <nav class="nav-right">
+                    <ul>
+                        <li><a href="subscription.html">Subscribe</a></li>
+                        <li><a id="user-name-display" href="login.html">Login</a></li>
+                        <li><button id="logout-button" style="display:none;">Logout</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Section -->
+    <section class="dashboard">
+        <div class="container">
+            <h2>Welcome to Your Budget Dashboard</h2>
+            <!-- Income vs Expenses Overview -->
+            <div class="dashboard-grid">
+                <div class="box overview">
+                    <h3>Income vs Expenses</h3>
+                    <div class="income-expense">
+                        <p>Total Income: <span id="total-income">$5,000</span></p>
+                        <p>Total Expenses: <span id="total-expenses">$3,200</span></p>
+                        <p>Balance: <span id="balance">$1,800</span></p>
+                    </div>
+                </div>
+
+                <!-- Spending Categories -->
+                <div class="box categories">
+                    <h3>Spending Categories</h3>
+                    <ul id="category-list">
+                        <li>Food: $500</li>
+                        <li>Housing: $1,200</li>
+                        <li>Transportation: $300</li>
+                        <li>Entertainment: $100</li>
+                    </ul>
+                </div>
+
+                <!-- Monthly Trends -->
+                <div class="box trends">
+                    <h3>Monthly Trends</h3>
+                    <canvas id="trend-chart"></canvas> <!-- Placeholder for a chart -->
+                </div>
+
+                <!-- Balance Overview -->
+                <div class="box balance-overview">
+                    <h3>Balance Overview</h3>
+                    <div class="balance-circle">
+                        <p><span id="balance-percentage">56%</span> Remaining</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Budgets Are Sexy. All rights reserved.</p>
+            <div class="social-media">
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <img src="facebook-icon.png" alt="Facebook">
+                </a>
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                    <img src="twitter-icon.png" alt="Twitter">
+                </a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <img src="instagram-icon.png" alt="Instagram">
+                </a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                    <img src="linkedin-icon.png" alt="LinkedIn">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="navbar.js"></script>
+    <script src="dashboard.js"></script> <!-- Add JavaScript for chart and dynamic elements -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>

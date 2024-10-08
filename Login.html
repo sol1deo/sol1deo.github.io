@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Include Roboto Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <input type="text" id="username" name="username" required placeholder=" ">
+                <label for="username">Username</label>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" required placeholder=" ">
+                <label for="password">Password</label>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div id="error-message" class="error-message"></div>
+    </div>
+    
+
+    <script>
+        // Define valid credentials outside the event listener
+        const validUsername = 'admin';
+        const validPassword = 'admin';
+    
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMessage = document.getElementById('error-message');
+    
+            // Clear previous error message
+            errorMessage.textContent = '';
+    
+            // Validate fields
+            if (username === '' || password === '') {
+                errorMessage.textContent = 'Both fields are required.';
+                return;
+            }
+    
+            // Check for correct username and password
+            if (username === validUsername && password === validPassword) {
+                // Store the logged-in username in localStorage
+                localStorage.setItem('username', username);
+    
+                alert('Login successful!');
+                window.location.href = 'profile.html'; // Redirect to profile page
+            } else {
+                errorMessage.textContent = 'Invalid username or password.';
+            }
+        });
+    </script>
+    
+    
+</body>
+</html>
+
+
+

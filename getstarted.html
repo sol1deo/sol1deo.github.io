@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Budgets Are Sexy - Personal Finance Blog">
+    <title>Budgets Are Sexy - Personal Finance</title>
+    <link rel="stylesheet" href="getstarted.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <!-- Left Side Navigation -->
+                <nav class="nav-left">
+                    <ul>
+                        <li><a href="WebsiteRecreation.html">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="services.html">Services</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Website Title -->
+                <h1>Budgets Are Sexy</h1>
+
+                <!-- Right Side Navigation -->
+                <nav class="nav-right">
+                    <ul>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="subscription.html">Subscribe</a></li>
+                        <li><a id="user-name-display" href="login.html">Login</a></li> <!-- This should change to username -->
+                        <li><button id="logout-button" style="display:none;">Logout</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <section class="search-section">
+        <div class="container">
+            <input type="text" id="search-bar" class="search-bar" placeholder="Search articles...">
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="content">
+        <div class="container">
+            <h3>All Articles</h3>
+
+            <div class="articles">
+                <article>
+                    <img src="budgeting.jpg" alt="Budgeting Tips">
+                    <h4><a href="Article1.html">How to Start Budgeting</a></h4>
+                    <p>Budgeting is the first step toward financial freedom. Learn how to create a budget that works for you.</p>
+                </article>
+
+                <article>
+                    <img src="books.jpg" alt="Compound Interest">
+                    <h4><a href="Article2.html">The Power of Compound Interest</a></h4>
+                    <p>Compound interest can change your financial future. Find out how to make it work for you.</p>
+                </article>
+
+                <article>
+                    <img src="beach.jpg" alt="Retirement Planning">
+                    <h4><a href="Article3.html">Retirement Planning for Millennials</a></h4>
+                    <p>It's never too early to start planning for retirement. Here are some strategies to get you started.</p>
+                </article>
+
+                <article>
+                    <img src="wealth.jpg" alt="Retirement Planning">
+                    <h4><a href="Article4.html">What Wealth Means (To Me)</a></h4>
+                    <p>Jordan over at The Wealth Letters prompted me to share my thoughts on “wealth” for an upcoming book of his…</p>
+                </article>
+
+                <article>
+                    <img src="beach.jpg" alt="Retirement Planning">
+                    <h4><a href="Article3.html">Retirement Planning for Millennials</a></h4>
+                    <p>It's never too early to start planning for retirement. Here are some strategies to get you started.</p>
+                </article>
+
+                <article>
+                    <img src="beach.jpg" alt="Retirement Planning">
+                    <h4><a href="Article3.html">Retirement Planning for Millennials</a></h4>
+                    <p>It's never too early to start planning for retirement. Here are some strategies to get you started.</p>
+                </article>
+
+                <article>
+                    <img src="beach.jpg" alt="Retirement Planning">
+                    <h4><a href="Article3.html">Retirement Planning for Millennials</a></h4>
+                    <p>It's never too early to start planning for retirement. Here are some strategies to get you started.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Budgets Are Sexy. All rights reserved.</p>
+            <div class="social-media">
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <img src="facebook-icon.png" alt="Facebook">
+                </a>
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                    <img src="twitter-icon.png" alt="Twitter">
+                </a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <img src="instagram-icon.png" alt="Instagram">
+                </a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                    <img src="linkedin-icon.png" alt="LinkedIn">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Search Functionality -->
+    <script>
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop){
+            // Downscroll
+            document.body.classList.add('scrolled');
+        } else {
+            // Upscroll
+            document.body.classList.remove('scrolled');
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+
+        // Function to filter articles based on search input
+        document.getElementById('search-bar').addEventListener('keyup', function() {
+            let query = this.value.toLowerCase(); // Get the search query
+            let articles = document.querySelectorAll('.articles article'); // Select all articles
+
+            articles.forEach(function(article) {
+                // Get the article text (title and description)
+                let title = article.querySelector('h4 a').innerText.toLowerCase();
+                let description = article.querySelector('p').innerText.toLowerCase();
+
+                // Check if the query matches the title or description
+                if (title.includes(query) || description.includes(query)) {
+                    article.style.display = 'block'; // Show the article
+                } else {
+                    article.style.display = 'none'; // Hide the article
+                }
+            });
+        });
+    </script>
+</body>
+<script src="navbar.js"></script>
+</html>
+

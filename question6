@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number to Word</title>
+</head>
+<body>
+    <h1>Random Number to Word</h1>
+
+    <button onclick="generateRandomWord()">Generate Word</button>
+    
+    <p id="output"></p>
+
+    <script>
+        function generateRandomWord() {
+            const words = ["one", "two", "three", "four", "five", "six"];
+            const randomNumber = Math.floor(Math.random() * 6); // Generates a number between 0 and 5
+            document.getElementById('output').innerHTML = words[randomNumber];
+        }
+    </script>
+</body>
+</html>
